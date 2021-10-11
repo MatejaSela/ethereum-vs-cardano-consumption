@@ -1,11 +1,10 @@
 import './App.css';
-import * as d3 from "d3";
+import Chart from './container/LinearChart';
+import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-      {console.log(d3.selectAll("div"))}
-    </div>
+    <Chart />
   );
 }
 
