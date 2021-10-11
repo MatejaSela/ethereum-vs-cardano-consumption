@@ -1,9 +1,9 @@
-import "../index.css";
+import "./ethereum-chart.css";
 import * as d3 from "d3";
 import React, { useState } from "react";
-import ethData from '../eth_data.csv';
+import ethData from '../../eth_data.csv';
 
-const Chart = () => {
+const EthereumChart = () => {
         React.useEffect(() => {
             d3.csv(ethData).then((d) => {
                 const parsedate = d3.timeParse("%Y/%m/%d");
@@ -115,4 +115,4 @@ const Chart = () => {
             </div>
         );    
     }
-export default Chart;
+export default EthereumChart;

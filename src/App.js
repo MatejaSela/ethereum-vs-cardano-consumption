@@ -1,10 +1,16 @@
-import './App.css';
-import Chart from './container/LinearChart';
+import EthereumChart from './container/EthereumChart/EthereumChart';
 import React from 'react';
+import TextField from './container/TextField/TextField';
+import Header from './container/Header/Header';
+import './index.css';
 
 function App() {
   return (
-    <Chart />
+    <div>
+      <Header />
+      <EthereumChart />
+      <TextField />
+    </div> 
   );
 }
 
