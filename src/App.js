@@ -30,8 +30,8 @@ function App() {
       <br/>
       <br/>
 
-      <p className="textfield"> The following graph presents the Ethereum electricity consumption in TWh. Ethereum is the major blockhain where
-      most artists decide to mint their NFTs, and we're here to show that there's a more sustainable alternative</p>
+      <p className="textfield"> The following graph presents the yearly Ethereum electricity consumption in TWh. Ethereum is THE blockhain where
+      most artists decide to mint their NFTs, and we're here to show that there's a more sustainable alternative.</p>
 
       <EthereumChart />
 
@@ -67,7 +67,8 @@ function App() {
     <p className="formula"> Therefore the total Cardano consumption = TP*RPP*MS + TP*RPP*MS * 10% = {finalCalculationkWh} kWh</p> 
     <p className="formula"> {finalCalculationkWh}kWh is equivalent to {finalCalculationMWh}MWh</p> 
 
-    <p className="textfield"> Cardano is currently {lastNumberEthereum / finalCalculationMWh} times more energy efficient than Ethereum</p>. 
+    <p className="textfield"> Cardano is currently {(lastNumberEthereum/finalCalculationMWh).toPrecision(6)} times more energy efficient than Ethereum.
+    Here is a chart comparing the energy consumption of Ethereum and Cardano side by side:</p>
     
     </div> 
   );

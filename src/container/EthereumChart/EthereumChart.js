@@ -100,7 +100,7 @@ const EthereumChart = () => {
                 // chart title
                     <text
                         x={width / 2} y={0 - margin.top / 2} textAnchor="middle" >
-                        {"Ethereum Current Yearly Maximum Energy Consumption"}
+                        {"Ethereum Yearly Maximum Energy Consumption"}
                     </text>
                 // chart subtitle
                     <a
