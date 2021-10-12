@@ -2,28 +2,27 @@ body {
   font-family: Robotto;
 }
 
-.wrapper {
-  font-size: 16px;
-  color: #666;
-  padding: 10em;
-}
-
 svg {
   overflow: visible;
 }
 
 text {
-  fill: black;
-  color: black;
+  fill: #484848;
+  color: #484848;
   font-size: 16px;
 }
 
-.subtitle text {
-  text-decoration: underline;
-  font-size: 12px;
+.header {
+  text-align: center;
+  font-family: Robotto;
+  width:100%;
+  height:100%;
+  padding-bottom: 10em;
+  padding-top:10em;
+  color: #484848
 }
 
-.axis .domain,
-.axis.xAxis line {
-  display: none;
+.textfield{
+  padding: 2em;
+  font-size: 2em;
 }

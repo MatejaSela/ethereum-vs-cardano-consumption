@@ -1,26 +1,12 @@
-body {
-  font-family: Robotto;
-}
-
 .wrapper {
   font-size: 16px;
-  color: #666;
+  color: #484848;
   padding: 10em;
-}
-
-svg {
-  overflow: visible;
-}
-
-text {
-  fill: black;
-  color: black;
-  font-size: 16px;
 }
 
 .subtitle text {
   text-decoration: underline;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .axis .domain,
