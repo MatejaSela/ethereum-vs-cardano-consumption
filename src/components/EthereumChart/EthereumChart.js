@@ -2,6 +2,7 @@ import "./ethereum-chart.css";
 import * as d3 from "d3";
 import React, { useState } from "react";
 import ethData from '../../eth_data.csv';
+import { MContext } from '../Provider/Provider'
 
 const EthereumChart = () => {
         React.useEffect(() => {
@@ -11,10 +12,8 @@ const EthereumChart = () => {
                     element.date = parsedate(element.date);
                     element.TWhPerYear = Number(element.TWhPerYear);
                 });
-                console.log(d)
                 setData(d);
                 });
-               
                 return () => undefined;
         }, []);
 
@@ -73,8 +72,15 @@ const EthereumChart = () => {
             .y1(() => getY(yMinValue - 1))
             .curve(d3.curveMonotoneX)(data);
 
-        return (
+        return ( 
             <div className="wrapper">
+                {/* <MContext.Consumer> */}
+                
+                {/* <button onClick={()=>{context.setConsumptionData("New Arrival")}}>Send</button> */}
+                {/* {(context) => (context.setConsumptionData(["abc"]))} */}
+
+                {/* </MContext.Consumer> */}
+
                 <svg
                     viewBox={`0 0 ${width + margin.left + margin.right} 
                                     ${height + margin.top + margin.bottom}`}
@@ -112,6 +118,7 @@ const EthereumChart = () => {
                         </text>
                     </a>
                 </svg>
+
             </div>
         );    
     }
