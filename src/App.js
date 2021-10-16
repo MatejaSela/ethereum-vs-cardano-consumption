@@ -29,6 +29,11 @@ const App = () => {
 
     const lastNumberEthereum = 77.26755054*1000000; // TODO pull from CSV
 
+    // Geocentric centers of power (?)
+    // Supporting the next generation of artists - they need a planet to live on (...)
+    
+    // Artano is global, ethical, and sustainable. What do we mean by sustainable...
+
     const [barData, setBarData] = useState([]);
     return (
        <div> 
@@ -52,6 +57,8 @@ const App = () => {
         {/* <MyProvider> */}
           <EthereumChart />
         {/* </MyProvider> */}
+
+        
         
         <p className="textfield"> As Ethereum uses a proof of work algorithm to execute its transacitons, it requires enormous amounts of energy to execute a single transaction, which has accumulated to
           energy consumption of countries like Bangladesh, a top 40 consumer on a yearly basis. </p>
@@ -73,7 +80,7 @@ const App = () => {
         
         </p>
 
-      <h2 className="formula">Now for the formula we used: </h2>
+      <h2 className="formula">Now for the formula we used [this is according to our best estimates at this time]: </h2>
       <br/>
       <p className="formula">We take the total number of pools (Total Pools = TP = {TP})</p>
       <p className="formula">Assume the average number of relays is 3 per pool (Relays Per Pool = RPP = {RPP})</p>
@@ -86,11 +93,10 @@ const App = () => {
       <p className="formula"> {finalCalculationkWh}kWh is equivalent to {finalCalculationMWh}MWh</p> 
 
       <p className="textfield"> Cardano is currently {(lastNumberEthereum/finalCalculationMWh).toPrecision(6)} times more energy efficient than Ethereum.
-      Here is a chart comparing the energy consumption of Ethereum and Cardano side by side:</p>
-      <BarChart totEthereum={lastNumberEthereum} totCardano={finalCalculationMWh} chartId={1}/>
+      Here is a chart comparing the energy consumption of Ethereum and Cardano per year side by side:</p>
+      <BarChart totEthereum={lastNumberEthereum} totCardano={finalCalculationMWh} chartId={1} numTransactionsOfCardano={1}/>
       <p className="textfield"> There's no error on this graph, the Cardano energy consumption doesn't even appear, so let's crank it up to 10,000 transactions.</p>
-      <BarChart totEthereum={lastNumberEthereum} totCardano={finalCalculationMWh*10000} chartId={2}/>
-      <p className="textfield"> To conclude, Cardano's proof of Stake Algorithm is tens of thousands of times more energy efficient than Ethereum, which uses a proof of work algorithm. </p>
+      <p className="textfield"> To conclude, Cardano's proof of stake algorithm is tens of thousands of times more energy efficient than Ethereum, which uses a proof of work algorithm. </p>
       </div>
     );
   }

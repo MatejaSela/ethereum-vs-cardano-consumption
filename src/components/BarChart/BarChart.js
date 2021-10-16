@@ -5,24 +5,29 @@ import React, { useState, useEffect } from "react";
 
 const BarChart = (props) => {
     const [data, setData] = useState([]);
+    const [transactionMultiplier, settransactionMultiplier] = useState(1);
+
+    function handleChange(e) {
+        const data1 = [
+            {group: "Cardano " + transactionMultiplier + " tx", value: props.totCardano*e.target.value},
+            {group: "Ethereum 1tx", value: props.totEthereum},
+        ];
+        setData(data1)
+     
+        console.log(e.target.value);
+      }
+
 
     useEffect(() => {
         update(data)
     }, [data]);
-
-    // create 2 data_set
-    const data1 = [
-        {group: "Cardano", value: props.totCardano},
-        {group: "Ethereum", value: props.totEthereum},
-        {group: "Viza", value: 8}
-    ];
     
     // set the dimensions and margins of the graph
     const margin = {top: 30, right: 30, bottom: 70, left: 60},
         width = 460 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
-           // create a tooltip
+    // // create a tooltip
     // var Tooltip = d3.select("my_dataviz")
     //     .append("svg")
     //     .style("opacity", 0)
@@ -54,12 +59,17 @@ const BarChart = (props) => {
     //     .style("stroke", "none")
     //     .style("opacity", 0.8)
     // }
+
+    // .on("mouseover", mouseover)
+    // .on("mousemove", mousemove)
+    // .on("mouseleave", mouseleave)
     
     // append the svg object to the body of the page
     const svg = d3.select("#my_dataviz"+props.chartId)
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+
     .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -77,12 +87,12 @@ const BarChart = (props) => {
         .attr("class", "x label")
         .attr("x", width)
         .attr("y", height - 6)
-        .text("Single transaction");
+        .text("Transactions");
     
-        // X axis
+    // X axis
     const x = d3.scaleBand()
         .range([ 0, width ])
-        .domain(data1.map(d => d.group))
+        .domain(data.map(d => d.group))
         .padding(0.2);
         svg.append("g")
         .attr("transform", `translate(0,${height})`)
@@ -96,18 +106,17 @@ const BarChart = (props) => {
         .attr("class", "myYaxis")
         .call(d3.axisLeft(y));
 
-    // svg.selectAll().on("mouseover", mouseover)
-    //     .on("mousemove", mousemove)
-    //     .on("mouseleave", mouseleave)
+
     // A function that create / update the plot for a given variable:
     function update(data) {
     
         var u = svg.selectAll("rect")
             .data(data)
+            
     
         u.join("rect")
             .transition()
-            .duration(1000)
+            .duration(500)
             .attr("x", d => x(d.group))
             .attr("y", d => y(d.value))
             .attr("width", x.bandwidth())
@@ -117,10 +126,15 @@ const BarChart = (props) => {
     
     // Initialize the plot with the first dataset
 
-
     return(
         <div className="barwrapper">
-            <button onClick={() => setData(data1)}>Cardano vs. Ethereum</button>
+            <button onClick={() => setData(data)}>Cardano vs. Ethereum</button>
+            <form>
+                <label>
+                    Cardano transactions:
+                    <input name="Cardano Transactions" onChange={handleChange} /> transactions
+                </label>
+            </form>
             <div id={"my_dataviz"+props.chartId}></div>
         </div>
     )
