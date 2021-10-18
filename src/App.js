@@ -1,7 +1,7 @@
 import EthereumChart from './components/EthereumChart/EthereumChart';
 import MyProvider from './components/Provider/Provider'
 import BarChart from './components/BarChart/BarChart'
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './index.css';
 import './components/Provider/Provider'
 
