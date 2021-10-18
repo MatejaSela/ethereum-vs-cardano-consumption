@@ -15,19 +15,23 @@ const BarChart = (props) => {
     height = 400 - margin.top - margin.bottom;
 
     // create a tooltip
-    var Tooltip = d3.select(".tooltip")
-    .append("div")
 
     var mouseover = function(d) {
-        Tooltip
-        .style("opacity", 1)
-        .attr("class", ".tooltip")
-        .style("background-color", "white")
-        .style("border", "solid")
-        .style("border-width", "2px")
-        .style("border-radius", "5px")
-        .style("padding", "5px")
-        .append("div").attr("p", "hello")
+        d3.select(".barwrapper")
+            .append("div")
+                .attr("class", "tooltip")
+                .style("visibility", "visible")
+                .style("opacity", 1)
+                .style("background-color", "white")
+                .style("border", "solid")
+                .style("border-width", "2px")
+                .style("border-radius", "5px")
+                .style("padding", "5px")
+                .append("p")
+                    .attr("class", "texty")
+                    .text('hello')
+
+        console.log("here")
         
         d3.select(this)
         .style("stroke", "black")
@@ -35,11 +39,15 @@ const BarChart = (props) => {
     }
 
     var mouseleave = function(d) {
-        Tooltip
-        .style("opacity", 0)
+
+        d3.select(".tooltip")
+            .attr("class", ".tooltip")
+            .style("visibility", "hidden")
+            .remove("p").attr("class", "texty").text('hello')
+
         d3.select(this)
-        .style("stroke", "none")
-        .style("opacity", 0.8)
+            .style("stroke", "none")
+            .style("opacity", 0.8)
     }
 
     const svg = d3.select("#my_dataviz"+props.chartId)
@@ -123,7 +131,7 @@ const BarChart = (props) => {
         {data ?     
             <div id={"my_dataviz"+props.chartId}></div>
         : null}
-        <div className="tooltip"></div>
+       
        </div>
     )
 }
