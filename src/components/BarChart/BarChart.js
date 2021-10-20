@@ -22,10 +22,10 @@ const BarChart = (props) => {
         let ada_cons = data[0].value
         let text;
         if(eth_cons > ada_cons){
-            text = "The selected number of years of Cardano consumption are " + data[1].value/data[0].value + " times less energy consuming than Ethereum"
+            text = "The selected number of years of Cardano consumption are " + data[1].value/data[0].value + " times less energy consuming than 1 year of Ethereum"
         }
         else{
-            text = "The selected number of years of Cardano consumption are " + data[0].value/data[1].value + " times more energy consuming than Ethereum"
+            text = "The selected number of years of Cardano consumption are " + data[0].value/data[1].value + " times more energy consuming than 1 year of Ethereum"
         }
         d3.select(".barwrapper")
             .append("div")
@@ -100,7 +100,7 @@ const BarChart = (props) => {
             .attr("y", 6)
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
-            .text("Consumption in MWh");
+            .text("Yearly consumption in MWh");
             
         let y = props.totEthereum > data[0].value ? d3.scaleLinear()
             .domain([0, props.totEthereum])
