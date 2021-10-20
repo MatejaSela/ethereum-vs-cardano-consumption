@@ -22,10 +22,10 @@ const BarChart = (props) => {
         let ada_cons = data[0].value
         let text;
         if(eth_cons > ada_cons){
-            text = "The selected transaction number is " + data[1].value/data[0].value + " times less energy consuming than Ethereum"
+            text = "The selected number of years of Cardano consumption are " + data[1].value/data[0].value + " times less energy consuming than Ethereum"
         }
         else{
-            text = "The selected transaction number is " + data[1].value/data[0].value + " times more energy consuming than Ethereum"
+            text = "The selected number of years of Cardano consumption are " + data[0].value/data[1].value + " times more energy consuming than Ethereum"
         }
         d3.select(".barwrapper")
             .append("div")
@@ -54,7 +54,7 @@ const BarChart = (props) => {
             .style("opacity", 0.8)
     }
 
-    const svg = d3.select("#my_dataviz"+props.chartId)
+    const svg = d3.select("#barchart")
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -111,6 +111,9 @@ const BarChart = (props) => {
         svg.append("g")
             .attr("class", "myYaxis")
             .call(d3.axisLeft(y));
+        
+        d3.select("#barchart").transition()
+        .duration(500)
 
         var u = svg.selectAll("rect")
             .data(data)
@@ -134,7 +137,7 @@ const BarChart = (props) => {
         </label>
         </form>
         {data ?     
-            <div id={"my_dataviz"+props.chartId}></div>
+            <div id="barchart"></div>
         : null}
        
        </div>
