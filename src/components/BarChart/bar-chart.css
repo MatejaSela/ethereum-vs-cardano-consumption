@@ -5,13 +5,6 @@
     margin-right: 50%;
 }
 
-#my_dataviz2 svg{
-    display: flex;
-    position:absolute;
-    margin-left: 35%;
-    margin-right: 50%;
-}
-
 .barwrapper {
     width:10%;
     position: block;
