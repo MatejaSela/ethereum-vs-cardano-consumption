@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ethData from '../../eth_data.csv';
 import { MContext } from '../Provider/Provider'
 
-const EthereumChart = () => {
+const EthereumChart = (props) => {
         React.useEffect(() => {
             d3.csv(ethData).then((d) => {
                 const parsedate = d3.timeParse("%Y/%m/%d");
@@ -13,12 +13,16 @@ const EthereumChart = () => {
                     element.TWhPerYear = Number(element.TWhPerYear);
                 });
                 setData(d);
+                let maxConsumption;
+                d.forEach(function(d) {
+                    maxConsumption = d.TWhPerYear; // get the latest consumption number
+                });
+                props.onLoadData(maxConsumption*1000000);  
                 });
                 return () => undefined;
         }, []);
 
-        const [activeIndex, setActiveIndex] = useState(null),
-        [data, setData] = useState([]);
+        const [data, setData] = useState([]);
 
         const margin = { top: 40, right: 80, bottom: 60, left: 50 },
         width = 960 - margin.left - margin.right,
@@ -48,17 +52,6 @@ const EthereumChart = () => {
             d3.select(ref).call(yAxis);
         };
 
-        const handleMouseMove = (e) => {
-            const bisect = d3.bisector((d) => d.date).left,
-                x0 = getX.invert(d3.pointer(e, this)[0]),
-                index = bisect(data, x0, 1);
-            setActiveIndex(index);
-        };
-
-        const handleMouseLeave = () => {
-            setActiveIndex(null);
-        };
-
         const linePath = d3
             .line()
             .x((d) => getX(d.date))
@@ -84,8 +77,6 @@ const EthereumChart = () => {
                 <svg
                     viewBox={`0 0 ${width + margin.left + margin.right} 
                                     ${height + margin.top + margin.bottom}`}
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
                 >
                 // x- and y-axes
                     <g className="axis" ref={getYAxis} />

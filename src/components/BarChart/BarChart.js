@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 
 const BarChart = (props) => {
     const [data, setData] = useState([
-        {group: "Cardano", value: props.totCardano},
+        {group: "Cardano", value: 1},
         {group: "Ethereum", value: props.totEthereum},
     ]);
 

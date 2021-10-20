@@ -27,14 +27,16 @@ const App = () => {
     const finalCalculationkWh = TP*RPP*MS + TP*RPP*MS * 0.1;
     const finalCalculationMWh = (TP*RPP*MS + TP*RPP*MS * 0.1)/1000;
 
-    const lastNumberEthereum = 77.26755054*1000000; // TODO pull from CSV
+    const handleLoadedData = (maxValEth) => {
+      setMaxEth(maxValEth);
+    }
+
+    const [maxEth, setMaxEth] = useState(null);
 
     // Geocentric centers of power (?)
     // Supporting the next generation of artists - they need a planet to live on (...)
     
     // Artano is global, ethical, and sustainable. What do we mean by sustainable...
-
-    const [barData, setBarData] = useState([]);
     return (
        <div> 
         <h1 className="header"> Artano Presents: Ethereum vs. Cardano, the ultimate energy consumption breakdown </h1>
@@ -55,7 +57,7 @@ const App = () => {
         {/* Make a chart where you can compare all 3 maybe? Maybe not idk... */}
 
         {/* <MyProvider> */}
-          <EthereumChart />
+          <EthereumChart onLoadData={handleLoadedData}/>
         {/* </MyProvider> */}
 
         
@@ -92,9 +94,9 @@ const App = () => {
       <p className="formula"> Therefore the total Cardano consumption = TP*RPP*MS + TP*RPP*MS * 10% = {finalCalculationkWh} kWh</p> 
       <p className="formula"> {finalCalculationkWh}kWh is equivalent to {finalCalculationMWh}MWh</p> 
 
-      <p className="textfield"> Cardano is currently {(lastNumberEthereum/finalCalculationMWh).toPrecision(6)} times more energy efficient than Ethereum.
+      <p className="textfield"> Cardano is currently {(maxEth/finalCalculationMWh).toPrecision(6)} times more energy efficient than Ethereum.
       Here is a chart comparing the energy consumption of Ethereum and Cardano per year side by side:</p>
-      <BarChart totEthereum={lastNumberEthereum} totCardano={finalCalculationMWh} chartId={1} numTransactionsOfCardano={1}/>
+      <BarChart totEthereum={maxEth} totCardano={finalCalculationMWh}/>
       <p className="textfield"> There's no error on this graph, the Cardano energy consumption doesn't even appear, so let's crank it up to 10,000 transactions.</p>
       <p className="textfield"> To conclude, Cardano's proof of stake algorithm is tens of thousands of times more energy efficient than Ethereum, which uses a proof of work algorithm. </p>
       </div>
